@@ -1,0 +1,12 @@
+/vendor
+/node_modules
+.env
+/app/_bkp
+/resources/assets/bower
+/storage/data
+/storage/meta
+/storage/cache
+/workbench
+/packages
+*.sublime-workspace
+*.sublime-project

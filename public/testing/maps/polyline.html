@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Simple Polylines</title>
+	<style>
+		html, body, #map-canvas {
+			height: 100%;
+			margin: 0px;
+			padding: 0px
+		}
+	</style>
+	<script src="fontawesome-markers.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
+	<script>
+
+		function initialize() {
+			var mapOptions = {
+				zoom: 12,
+				center: new google.maps.LatLng(36.399200439453125,25.479299545288086),
+				mapTypeId: google.maps.MapTypeId.TERRAIN
+			};
+
+			var map = new google.maps.Map(document.getElementById('map-canvas'),
+				mapOptions);
+
+			var plane = {
+				path: fontawesome.markers.PLANE,
+				scale: 0.4,
+				strokeWeight: 2,
+				strokeColor: 'white',
+				strokeOpacity: 0.8,
+				fillColor: 'rgb(244, 180, 0)',
+				fillOpacity: 1,
+				anchor: new google.maps.Point(24, -36)
+			};
+
+			var flightPlanCoordinates = [
+			new google.maps.LatLng(36.399200439453125,25.479299545288086),
+			new google.maps.LatLng(37.9364013672,23.9444999695),
+			new google.maps.LatLng(38.2924003601,27.156999588)
+			];
+
+			var flightPath = new google.maps.Polyline({
+				path: flightPlanCoordinates,
+				geodesic: true,
+				strokeColor: 'rgb(244, 180, 0)',
+				strokeOpacity: 1.0,
+				strokeWeight: 3,
+				zIndex: 100
+			});
+
+			flightPath.setMap(map);
+
+			var newFlightPath = new google.maps.Polyline({
+				path: flightPlanCoordinates,
+				geodesic: true,
+				strokeColor: 'white',
+				strokeWeight: 6,
+				strokeOpacity: 0.8,
+				zIndex: 10
+			});
+
+			newFlightPath.setMap(map);
+			
+			var airport = new google.maps.Marker({
+				position: new google.maps.LatLng(36.399200439453125,25.479299545288086),
+				map: map,
+				icon: plane,
+			});
+
+			var airport = new google.maps.Marker({
+				position: new google.maps.LatLng(38.2924003601,27.156999588),
+				map: map,
+				icon: plane,
+			});
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+	</script>
+</head>
+<body>
+	<div id="map-canvas"></div>
+</body>
+</html>
