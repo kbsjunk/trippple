@@ -16,12 +16,13 @@ class StationController extends Controller {
 	 */
 	public function search($term)
 	{
-		$places = Station::with('country')
-		->where('name', 'LIKE', $term.'%')
-		->where('is_suggestable', true)
-		->get();
 
-		return $this->response()->setIncludes(\Input::get('include'))->withCollection($places, new StationTransformer);
+		$results = Station::with('country')
+		->search($term, null, true, 10)
+		->where('is_suggestable', true)
+		->limit(20)->get();
+
+		return $this->response()->setIncludes(\Input::get('include'))->withCollection($results, new StationTransformer);
 	}
 
 	/**

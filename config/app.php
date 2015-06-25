@@ -149,6 +149,7 @@ return [
 		 * Vendor Service Providers...
 		 */
 		'Appkr\Fractal\ApiServiceProvider',
+		'Sofa\Eloquence\ServiceProvider',
 
 
 		/*

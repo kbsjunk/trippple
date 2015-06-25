@@ -1,8 +1,11 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Sofa\Eloquence\Eloquence;
 
 class Place extends Model {
+
+	use Eloquence;
 
 	protected $table = 'x_geonames';
 
@@ -14,6 +17,14 @@ class Place extends Model {
 	protected $casts = [
 		'latitude'  => 'float',
 		'longitude' => 'float',
+	];
+
+	protected $searchableColumns = [
+		'name'            => 20,
+		'ascii_name'      => 20,
+		'alternate_names' => 10,
+		'region.name'     => 5,
+		'country.name'    => 5,
 	];
 
 	public function type()

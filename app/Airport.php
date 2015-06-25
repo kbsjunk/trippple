@@ -1,8 +1,11 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Sofa\Eloquence\Eloquence;
 
 class Airport extends Model {
+
+	use Eloquence;
 
 	protected $table = 'x_airports';
 	protected $primaryKey = 'fs';
@@ -11,6 +14,17 @@ class Airport extends Model {
 	protected $casts = [
 		'latitude'  => 'float',
 		'longitude' => 'float',
+	];
+
+	protected $searchableColumns = [
+		'name'         => 20,
+		'iata'         => 10,
+		'icao'         => 10,
+		'faa'          => 10,
+		'city_code'    => 8,
+		'city'         => 5,
+		'district'     => 2,
+		'country_name' => 2,
 	];
 
 	/**

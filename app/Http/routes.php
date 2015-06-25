@@ -22,6 +22,9 @@
 // 	$locale = null;
 // }
 
+Punic\Data::setDefaultLocale(App::getLocale());
+Punic\Data::setFallbackLocale(config('app.fallback_locale'));
+
 // Route::group(['prefix' => $locale], function() {
 
 Route::get('/', 'WelcomeController@index');
@@ -43,6 +46,10 @@ Route::resource('trips.attractions', 'AttractionController');
 // });
 
 Route::group(['prefix' => 'api'], function() {
+
+	Route::get('countries/search/{query}', 'Api\CountryController@search');
+	Route::get('countries/{id}', 'Api\CountryController@show');
+	Route::get('countries', 'Api\CountryController@index');
 
 	Route::get('places/search/{query}', 'Api\PlaceController@search');
 	Route::get('places/{id}', 'Api\PlaceController@show');

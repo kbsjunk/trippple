@@ -77,7 +77,7 @@
 
 		$scope.placesConfig = {
 			valueField: 'id',
-			searchField: ['name', 'name_alt'],
+			searchField: ['name', 'name_alt', 'country.name'],
 			create: false,
 			maxItems: 1,
 			render: {
@@ -121,4 +121,8 @@
 
 	}];
 </script>
+@endsection
+
+@section('styles')
+<link href="{{ asset('css/selectize.remote.css') }}" rel="stylesheet">
 @endsection

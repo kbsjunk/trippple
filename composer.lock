@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f5838d8175f2d14eb97f006e27a0fc57",
+    "hash": "b77fc8b1767315d8fcb4de979e2ad9e3",
     "packages": [
         {
             "name": "appkr/fractal",
@@ -1452,6 +1452,62 @@
             ],
             "description": "A lightweight implementation of CommonJS Promises/A for PHP",
             "time": "2014-12-30 13:32:42"
+        },
+        {
+            "name": "sofa/eloquence",
+            "version": "0.4.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jarektkaczyk/eloquence.git",
+                "reference": "0e73b045a4d587f5b2a7a5c091bb820d2270dab1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jarektkaczyk/eloquence/zipball/0e73b045a4d587f5b2a7a5c091bb820d2270dab1",
+                "reference": "0e73b045a4d587f5b2a7a5c091bb820d2270dab1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "~5.0",
+                "illuminate/database": "~5.0",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sofa\\Eloquence\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jarek Tkaczyk",
+                    "email": "jarek@softonsofa.com",
+                    "homepage": "http://softonsofa.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Flexible Searchable, Mappable, Metable, Validation and more extensions for Laravel Eloquent ORM.",
+            "keywords": [
+                "eloquent",
+                "laravel",
+                "mappable",
+                "metable",
+                "mutable",
+                "searchable"
+            ],
+            "time": "2015-06-04 16:14:59"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3539,6 +3595,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "appkr/fractal": 20,
+        "sofa/eloquence": 20,
         "illuminate/workbench": 20
     },
     "prefer-stable": false,

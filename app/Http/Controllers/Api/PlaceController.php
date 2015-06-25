@@ -16,18 +16,15 @@ class PlaceController extends Controller {
 	 */
 	public function search($term)
 	{
-		$places = Place::with('country')->with('region')
-		->where(function($query) use ($term) {
-			$query->where('name', 'LIKE', $term.'%')
-			->orWhere('ascii_name', 'LIKE', $term.'%')
-			->orWhere(\DB::raw('\',\'||alternate_names'), 'LIKE', '%,'.$term.'%');
-		})
+		
+		$results = Place::with('country')->with('region')
+		->search($term, null, true, 10)
 		->where('f_class', 'P')
 		->orderBy('population', 'DESC')
 		->limit(20)
 		->get();
 
-		return $this->response()->setIncludes(\Input::get('include'))->withCollection($places, new PlaceTransformer);
+		return $this->response()->setIncludes(\Input::get('include'))->withCollection($results, new PlaceTransformer);
 	}
 
 	/**

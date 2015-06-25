@@ -16,12 +16,13 @@ class AirportController extends Controller {
 	 */
 	public function search($term)
 	{
-		$places = Airport::with('country')
-		->where('name', 'LIKE', $term.'%')
-		->where('active', true)
-		->get();
 
-		return $this->response()->setIncludes(\Input::get('include'))->withCollection($places, new AirportTransformer);
+		$results = Airport::with('country')
+		->search($term, null, true, 10)
+		->orderBy('classification')
+		->limit(20)->get();
+
+		return $this->response()->setIncludes(\Input::get('include'))->withCollection($results, new AirportTransformer);
 	}
 
 	/**
