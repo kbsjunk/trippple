@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\AuthorisedController as AuthorisedController;
+use App\Http\Controllers\AuthorisedController as Controller;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\TripRequest;
@@ -9,7 +9,7 @@ use App\Http\Requests\TripRequest;
 use App\Trip;
 use App\Place;
 
-class TripController extends AuthorisedController {
+class TripController extends Controller {
 
 	/**
 	 * Display a listing of the resource.

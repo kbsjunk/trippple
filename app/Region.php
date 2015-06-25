@@ -7,9 +7,18 @@ class Region extends Model {
 	protected $primaryKey = 'code';
 	protected $increments = false;
 
-	protected $visible = [
-	'code',
-	'name',
+	protected $casts = [
+		'latitude'  => 'float',
+		'longitude' => 'float',
 	];
+
+	public function getGeometryAttribute()
+	{
+		return [
+		'type' => 'Point',
+		'coordinates' => [$this->longitude, $this->latitude]
+		];
+	}
+
 
 }

@@ -2,11 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Airport extends Model {
+class Station extends Model {
 
-	protected $table = 'x_airports';
-	protected $primaryKey = 'fs';
-	protected $increments = false;
+	protected $table = 'x_stations';
 
 	protected $casts = [
 		'latitude'  => 'float',
@@ -27,7 +25,7 @@ class Airport extends Model {
 
 	public function getTimezoneAttribute()
 	{
-		return \App\Timezone::get($this->time_zone_region_name);
+		return \App\Timezone::get($this->getAttributeFromArray('time_zone'));
 	}
 
 	public function getGeometryAttribute()
@@ -37,5 +35,6 @@ class Airport extends Model {
 		'coordinates' => [$this->longitude, $this->latitude]
 		];
 	}
+
 
 }

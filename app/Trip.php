@@ -35,4 +35,9 @@ class Trip extends Model {
 		return $this->belongsTo('App\Place', 'end_place_id');
 	}
 
+	public function getNgModelAttribute()
+	{
+		return 'trip';
+	}
+
 }

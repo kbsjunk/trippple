@@ -1,14 +1,13 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\AuthorisedController as AuthorisedController;
+use App\Http\Controllers\AuthorisedController as Controller;
 
 use Illuminate\Http\Request;
 
 use App\Place;
-// use Ipalaus\Geonames\Eloquent\Name as Place;
 
-class PlaceController extends AuthorisedController {
+class PlaceController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -18,31 +17,6 @@ class PlaceController extends AuthorisedController {
 	public function index()
 	{
 		//
-	}
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function search($term)
-	{
-		$place = Place::with('country')
-		->where('name', 'LIKE', $term.'%')
-		->where(function($query) use ($term) {
-			$query->orWhere('ascii_name', 'LIKE', $term.'%')
-			->orWhere('alternate_names', 'LIKE', '%'.$term.'%');
-		})
-		->where('f_class', 'P')
-		->orderBy('population', 'DESC')
-		->get();
-
-		// $place->each(function($item) {
-		// 	$item->setVisible(['id', 'name', 'country', 'latitude', 'longitude', 'timezone_id']);
-		// 	$item->country->setVisible(['code', 'name']);
-		// });
-
-		return $place;
 	}
 
 	/**

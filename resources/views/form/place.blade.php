@@ -2,14 +2,11 @@
 
 	<label for="{{ $field }}" class="control-label">{{ $label }}</label>
 
-	<select name="{{ $field }}" id="{{ $field }}" class="form-control" data-selectize="place" placeholder="{{ $label }}" value="{{{ Input::old($field, $trip->$field) }}}">
-		@if ($place)
-		<option value="{{{ $place->id }}}" selected data-data="{{ $place->toJson() }}">{{ $place->label }}</option>
-		@elseif (Input::old($field))
-		<?php $place = App\Place::find(Input::old($field)); ?>
-		<option value="{{{ $place->id }}}" selected data-data="{{ $place->toJson() }}">{{ $place->label }}</option>
-		@endif
-	</select>
+	@if (!$place && Input::old($field))
+	<?php $place = App\Place::find(Input::old($field)); ?>
+	@endif
+
+	<selectize config="placesConfig" options="[{{ $place->toJson() }}]" ng-model="{{ $model->ng_model }}.{{ $field }}"></selectize>
 
 	<span class="help-block">{{{ $errors->first($field, ':message') }}}</span>
 

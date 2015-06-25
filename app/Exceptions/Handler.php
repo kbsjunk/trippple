@@ -34,8 +34,22 @@ class Handler extends ExceptionHandler {
 	 * @param  \Exception  $e
 	 * @return \Illuminate\Http\Response
 	 */
-	public function render($request, Exception $e)
+	public function render($request, Exception $e) 
 	{
+		if ($request->is('api/*')) {
+			if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException
+				or $e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+				return app('api.response')->notFoundError('The requested resource does not exist.');
+			}
+
+			if ($e instanceof MethodNotAllowedException
+				or $e instanceof MethodNotAllowedHttpException
+				) {
+				return $this->response()->setStatusCode(405)->error('The requested endpoint does not exist.');
+			}
+
+		}
+
 		return parent::render($request, $e);
 	}
 

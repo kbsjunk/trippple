@@ -8,7 +8,9 @@
 		"laravel/framework": "5.0.*",
 		"fabpot/goutte": "^2.0",
 		"punic/punic": "1.*",
-		"pda/pheanstalk": "^3.0"
+		"pda/pheanstalk": "^3.0",
+		"appkr/fractal": "0.3.*@dev",
+		"caouecs/laravel4-lang": "~2.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
@@ -46,5 +48,6 @@
 	},
 	"config": {
 		"preferred-install": "dist"
-	}
+	},
+	"minimum-stability": "dev"
 }

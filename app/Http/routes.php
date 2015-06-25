@@ -10,6 +10,19 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+// $languages = array('en', 'de', 'fr', 'es');
+
+// $locale = Request::segment(1);
+
+// if(in_array($locale, $languages)) {
+// 	App::setLocale($locale);
+// 	Punic\Data::setDefaultLocale($locale);
+// }
+// else {
+// 	$locale = null;
+// }
+
+// Route::group(['prefix' => $locale], function() {
 
 Route::get('/', 'WelcomeController@index');
 
@@ -21,9 +34,24 @@ Route::controllers([
 	]);
 
 Route::resource('places', 'PlaceController');
-Route::get('places/search/{query}', 'PlaceController@search');
+
 
 Route::resource('trips', 'TripController');
 Route::resource('trips.destinations', 'DestinationController');
 Route::resource('trips.attractions', 'AttractionController');
 
+// });
+
+Route::group(['prefix' => 'api'], function() {
+
+	Route::get('places/search/{query}', 'Api\PlaceController@search');
+	Route::get('places/{id}', 'Api\PlaceController@show');
+
+	Route::get('stations/search/{query}', 'Api\StationController@search');
+	Route::get('stations/{id}', 'Api\StationController@show');
+
+	Route::get('airports/search/{query}', 'Api\AirportController@search');
+	Route::get('airports/{id}', 'Api\AirportController@show');
+
+	// Route::resource('places', 'Api\PlaceController', ['only' => ['index', 'show']] );
+});

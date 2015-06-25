@@ -7,23 +7,13 @@ class Place extends Model {
 	protected $table = 'x_geonames';
 
 	protected $with = [
-	'country',
-	'region',
-	];
-
-	protected $visible = [
-	'id',
-	'name',
-	'country',
-	'region',
-	'latitude',
-	'longitude',
-	'timezone_id',
+		'country',
+		'region',
 	];
 
 	protected $casts = [
-	'latitude'  => 'float',
-	'longitude' => 'float',
+		'latitude'  => 'float',
+		'longitude' => 'float',
 	];
 
 	public function type()
@@ -40,5 +30,19 @@ class Place extends Model {
 	{
 		return $this->belongsTo('App\Region', 'admin1', 'fips_code')->where('country_code', $this->country_id);
 	}
+
+	public function getTimezoneAttribute()
+	{
+		return \App\Timezone::get($this->time_zone_region_name);
+	}
+
+	public function getGeometryAttribute()
+	{
+		return [
+		'type' => 'Point',
+		'coordinates' => [$this->longitude, $this->latitude]
+		];
+	}
+
 
 }

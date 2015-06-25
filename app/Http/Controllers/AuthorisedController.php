@@ -1,8 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller as UnauthController;
+use App\Http\Controllers\Controller as UnauthorisedController;
 
-abstract class AuthorisedController extends UnauthController {
+abstract class AuthorisedController extends UnauthorisedController {
 
 	
 	/**

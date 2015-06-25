@@ -9,12 +9,12 @@ return [
 	*/
 
 	'success' => [
-	'saved' => 'Record [:id] was successfully saved.',
+	'saved' => 'Datensatz [:id] gespeichert.',
 	],
 	
 	'error'     => [
-	'not_found' => 'Record [:id] was not found.',
-	'not_saved' => 'Record [:id] could not be saved.',
+	'not_found' => 'Datensatz [:id] nicht gefunden.',
+	'not_saved' => 'Datensatz [:id] nicht gespeichert.',
 	],
 
 	];
